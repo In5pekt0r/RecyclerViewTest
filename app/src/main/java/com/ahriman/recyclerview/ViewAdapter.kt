@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 class ViewAdapter() : RecyclerView.Adapter<ViewAdapter.ViewHolder>() {
 
-    val differ = AsyncListDiffer(this,differCallback)
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
@@ -51,6 +51,7 @@ class ViewAdapter() : RecyclerView.Adapter<ViewAdapter.ViewHolder>() {
         }
 
     }
+    val differ = AsyncListDiffer(this,differCallback)
 
 
 }
