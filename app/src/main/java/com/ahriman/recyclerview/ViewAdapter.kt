@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView
 
 class ViewAdapter() : RecyclerView.Adapter<ViewAdapter.ViewHolder>() {
 
+    val differ = AsyncListDiffer(this,differCallback)
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
         val view = LayoutInflater.from(parent.context)
@@ -31,22 +33,24 @@ class ViewAdapter() : RecyclerView.Adapter<ViewAdapter.ViewHolder>() {
         return differ.currentList.size
     }
 
+
+
     class ViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
         val imageView: ImageView = itemView.findViewById(R.id.imageview)
         val textView: TextView = itemView.findViewById(R.id.textView)
     }
 
-    private val differCallback = object : DiffUtil.ItemCallback<ItemViewModel>(){
-        override fun areItemsTheSame(oldItem: ItemViewModel, newItem: ItemViewModel): Boolean {
+    private val differCallback = object : DiffUtil.ItemCallback<Item>(){
+        override fun areItemsTheSame(oldItem: Item, newItem: Item): Boolean {
             return  oldItem.text == newItem.text
         }
 
         @SuppressLint("DiffUtilEquals")
-        override fun areContentsTheSame(oldItem: ItemViewModel, newItem: ItemViewModel): Boolean {
+        override fun areContentsTheSame(oldItem: Item, newItem: Item): Boolean {
             return oldItem == newItem
         }
 
     }
 
-    val differ = AsyncListDiffer(this,differCallback)
+
 }
