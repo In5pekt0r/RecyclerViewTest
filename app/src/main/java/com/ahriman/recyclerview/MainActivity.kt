@@ -93,37 +93,17 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    /*override fun onSaveInstanceState(outState: Bundle) {
-        val recyclerview = findViewById<RecyclerView>(R.id.recyclerView)
-        super.onSaveInstanceState(outState)
-
-        outState.putParcelable(
-            ARGS_SCROLL_STATE,
-            recyclerview.getLayoutManager()?.onSaveInstanceState()
-        )
-    }
-    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
-        super.onRestoreInstanceState(savedInstanceState)
-        Log.i("MyTag", "onRestoreInstanceState")
-        val recyclerview = findViewById<RecyclerView>(R.id.recyclerView)
-        recyclerview.layoutManager = savedInstanceState.getParcelable(ARGS_SCROLL_STATE)
-    }*/
     override fun onSaveInstanceState(state: Bundle) {
-
-
-
         state.putParcelableArrayList(ARGS_SCROLL_STATE, data as ArrayList<out Parcelable?>?)
         super.onSaveInstanceState(state)
     }
+
     override fun onRestoreInstanceState(state: Bundle) {
         super.onRestoreInstanceState(state)
 
         if (state != null) data = state.getParcelableArrayList<Parcelable>(ARGS_SCROLL_STATE) as ArrayList<Item>
     }
-
-
-
-    }
+}
 
 
 
